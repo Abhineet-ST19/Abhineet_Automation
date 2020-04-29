@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Chart.Name }}
+  annotations:
+    {{- range $key, $val := .Values.deploy }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
+
+spec:
+  template:
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["/bin/sh"]
+        args: ["-c", "echo 'This container simply initiates the test run. Actual work carried out in deploy event in brigade.js.'"]
+      restartPolicy: Never
+  backoffLimit: 1

@@ -1,0 +1,23 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+*serenity.properties
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Brigade
+node_modules
+brigade-test/brigade.js
+*.tmp
+

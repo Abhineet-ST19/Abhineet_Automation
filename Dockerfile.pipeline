@@ -1,0 +1,13 @@
+FROM maven
+
+# set /app directory as default working directory
+WORKDIR /app
+
+# copy all file from current dir to /app in container
+COPY . /app/
+
+RUN wget https://aka.ms/downloadazcopy-v10-linux && tar -zxvf downloadazcopy-v10-linux && cd azcopy_linux_amd64_10.3.4 && cp azcopy .. && cd ..
+
+RUN mvn install -Dmaven.test.skip=true
+
+RUN chmod +x run_tests.sh

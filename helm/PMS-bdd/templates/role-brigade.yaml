@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  labels:
+    app: "dan-tvstack-bdd-service-account"
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: "{{ .Release.Name }}-brigade-role"
+  namespace: tvstack01
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets # brig client uses K8s secrets to create and track build/deploy requests
+  verbs:
+  - create
+  - get
+  - list

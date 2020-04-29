@@ -1,0 +1,18 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  labels:
+    app: "dan-tvstack-bdd-service-account"
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: "{{ .Release.Name }}-brigade-rb"
+  namespace: tvstack01
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: "{{ .Release.Name }}-brigade-role"
+subjects:
+- kind: ServiceAccount
+  name: "{{ .Release.Name }}-sa"
+  namespace: {{ .Release.Namespace }}
