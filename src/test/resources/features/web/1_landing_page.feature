@@ -4,14 +4,6 @@ Feature: Login feature setup - Landing page
   I can land on welcome pms page
   so that I can access different different modules.
 
-#  @Sanity
-#  Scenario: View landing page features
-#    Given I launch the PMS application
-#    Then I click on LogIn with Google option
-#    And I Provide UserName and Click on Next button
-#    And I provide Password and Click on Next Button
-#    Then User should be Login Successfully on PMS
-
   Scenario Outline: Check login feature for invalid username
     Given I launch the PMS application
     Then I click on LogIn with Google option
@@ -36,8 +28,8 @@ Feature: Login feature setup - Landing page
     Given I launch the PMS application
     Then I click on LogIn with Google option
     When I provide "abhineet.kumar@successive.tech" and "abhineet@1666"
-    Then I should be on goal page and verity all the components on that page
-    And I verify the options in left panel
+#    Then I should be on goal page and verity all the components on that page
+#    And I verify the options in left panel
 
 
 

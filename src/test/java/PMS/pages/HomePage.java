@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class HomePage extends PageObject {
-    private static Config conf = ConfigLoader.load();
+
     @FindBy(xpath = "//*[contains(text(),'Login with Google')]")
     WebElement loginButton;
     @FindBy(xpath = "//div[text()='Sign in with Google']")
@@ -57,40 +57,33 @@ public class HomePage extends PageObject {
     WebElement yearEndReviewLink;
     @FindBy(xpath = "//span[text()='My Profile']")
     WebElement myProfileLink;
-    @FindBy(xpath = "//span[text()='Help Desk']")
-    WebElement helpDeskLink;
+    @FindBy(xpath = "//span[text()='FAQ']")
+    WebElement faqLink;
 
-
+//This function will click on google login option and verify the header of page//
     public void clickLogInWithGoogleOption() {
         loginButton.click();
-        String HeaderVerifyForLogin = headertext.getText();
-        Assert.assertEquals("Sign in with Google", HeaderVerifyForLogin);
+        Assert.assertEquals("Sign in with Google", headertext.getText());
         waitFor(username).waitUntilVisible();
     }
-
-    public void enterUserNameAndClickOnNextButton() {
-        username.sendKeys("butestuser@successivesoftwares.com");
-        nextButton.click();
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(password);
-    }
-
+//This function will enter username in username text box and click on next button//
     public void pmsLogIn(String email) {
 
         username.sendKeys(email);
         nextButton.click();
     }
-
+    //This function will enter password in password text box and click on next button//
     public void password(String pwd) {
 
         waitFor(password).waitUntilClickable();
         password.sendKeys(pwd);
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(nextButton);
+        waitFor(nextButton).waitUntilVisible();
 
-        waitFor(nextButton).withTimeoutOf(10, TimeUnit.SECONDS).waitUntilClickable();
+        //waitFor(nextButton).withTimeoutOf(10, TimeUnit.SECONDS).waitUntilClickable();
         nextButton.click();
 
     }
-
+//This function will assert the validations according to different scenarios//
     public void getMessage(String message) {
         try {
             if (validationMessageUserName.isDisplayed()) {
@@ -103,16 +96,7 @@ public class HomePage extends PageObject {
         }
 
     }
-
-
-    public void enterPasswordAndClickOnNextButton() {
-        password.sendKeys("8802420232");
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(nextButton);
-        nextButton.click();
-        System.out.println(pageTitle);
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(pageTitle);
-    }
-
+//This method will verify all the options on landing page//
     public void verifyHomePage() {
         waitFor(goalText).waitUntilVisible();
         Assert.assertEquals("  Goals", goalText.getText());
@@ -123,15 +107,15 @@ public class HomePage extends PageObject {
         Assert.assertEquals("Status", status.getText());
         Assert.assertEquals("Add Goals", addGoalButton.getText());
     }
-
+//This method will verify all the option in left panel//
     public void verifyLeftPanel() {
         Assert.assertEquals("Inbox", inboxLink.getText());
         Assert.assertEquals("Goals", goalLink.getText());
         Assert.assertEquals("One-To-One", oneToOneLink.getText());
         Assert.assertEquals("Teams", teamsLink.getText());
-        Assert.assertEquals("Year End Review", yearEndReviewLink.getText());
+   //     Assert.assertEquals("Year End Review", yearEndReviewLink.getText());
         Assert.assertEquals("My Profile", myProfileLink.getText());
-        Assert.assertEquals("Help Desk", helpDeskLink.getText());
+        Assert.assertEquals("FAQ", faqLink.getText());
     }
 
 

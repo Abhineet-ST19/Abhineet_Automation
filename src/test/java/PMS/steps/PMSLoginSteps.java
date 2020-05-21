@@ -28,17 +28,6 @@ public class PMSLoginSteps {
 
     }
 
-    @And("^I Provide UserName and Click on Next button$")
-    public void iProvideUserNameAndClickOnNextButton() {
-        homePage.enterUserNameAndClickOnNextButton();
-
-    }
-
-    @And("^I provide Password and Click on Next Button$")
-    public void iProvidePasswordAndClickOnNextButton() {
-        homePage.enterPasswordAndClickOnNextButton();
-
-    }
 
     @Then("^User should be Login Successfully on PMS$")
     public void userShouldBeLoginSuccessfullyOnPMS() {

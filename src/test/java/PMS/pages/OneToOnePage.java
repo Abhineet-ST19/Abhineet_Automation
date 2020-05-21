@@ -34,36 +34,37 @@ public class OneToOnePage extends PageObject {
     WebElement actionSuccessMessage;
 
 
-
+//This function will click on one to one option//
 
     public void clickOnOneToOneModule() {
         homePage.oneToOneLink.click();
 
     }
-
+//This function will verify the page title as Add Notes//
     public void verifyOneToOnePage() {
         Assert.assertEquals("Add Notes", addNotesButton.getText());
-        System.out.println("*********" + addNotesButton.getText());
-    }
 
+    }
+//This function will click on add button of one to one notes//
     public void clickOnAddNotesButton() {
         addNotesButton.click();
     }
-
+//This function will check that the calender option is not clickable//
     public void verifyCalenderNotClickable() {
         Assert.assertFalse(calenderButton.isEnabled());
     }
-
+//This method will verify the validation on mandatory fields//
     public void verifyMandatoryfieldsValidations() {
         submitForReviewButton.click();
         Assert.assertEquals("Title is required field", titleRequiredValidation.getText());
         Assert.assertEquals("Notes is required field", notesFieldRequiredValidation.getText());
 
     }
-
+//This method will enter the title of note//
     public void enterNoteTitle(String notetitlename) {
         noteTitle.sendKeys(notetitlename);
     }
+    //This method will enter the description of note//
 
     public void enterOneToOneDesc(String onetoonedecs) {
         waitFor(iFrameOneToOneSection).waitUntilVisible();
@@ -71,11 +72,11 @@ public class OneToOnePage extends PageObject {
         oneToOneSection.sendKeys(onetoonedecs);
         getDriver().switchTo().defaultContent();
     }
-
+//This method will click on review button//
     public void submitForReviewButton() {
         submitForReviewButton.click();
     }
-
+//This method will the success message,note title and status of note//
     public void oneToOneVerification(String title, String status) {
         Assert.assertEquals("Action performed successfully!",actionSuccessMessage.getText());
         Assert.assertEquals(title, oneToOneTitle.getText());
